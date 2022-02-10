@@ -45,7 +45,7 @@ ul{
     z-index: 500;
     padding: 0 40px;
 }
-li.col-sm-3{
+li{
     background-color: white;
     margin: 20px 0;
 }
@@ -101,6 +101,7 @@ li p{
 li div{
     margin: 0;
     border-right: 0;
+    padding: 0 ;
 }
 li:first-child{
     border-top-left-radius: 10px;

@@ -13,7 +13,7 @@ const Map = () =>{
                     }, 
                     isp: ' '
     })
-    const ipSet = useRef(false)
+    const [isDataSet, setIsDataSet] = useState(false)
     const [ip, setIp] = useState()
     const [inputValue, setInputValue] = useState('')
     const url = 'https://geo.ipify.org/api/v2/country?apiKey=at_CK8ozFbsMUemLUqSUDkPMnb4n3C5t&ipAddress=' + ip
@@ -49,6 +49,8 @@ const Map = () =>{
     .then(data => {
         console.log('get user input: gotten')
         setData(data)
+        isDataSet(true)
+        console.log(data)
         setInputValue('')
     })
     .catch(error => {
@@ -85,7 +87,7 @@ const Map = () =>{
    const setInput = (e) =>{
     setInputValue(e.target.value)
    }
-
+   
    return(
         <div>
             <div className='first-box'>
@@ -99,25 +101,25 @@ const Map = () =>{
                     <li className='col-sm-3'>
                         <div>
                             <p className='smaller-text'>ip address</p>
-                            <p className='regular-text'>{data.ip}</p>
+                            {isDataSet && <p className='regular-text'>{data.ip}</p>}
                         </div>
                     </li>
                     <li className='col-sm-3'>
                         <div>
                             <p className='smaller-text'>location</p>
-                            <p className='regular-text'>{data.location.region}, {data.location.country}</p>
+                            {isDataSet && <p className='regular-text'> {data.location.region}, {data.location.country}</p>}
                         </div>
                     </li>
                     <li className='col-sm-3'>
                         <div>
                             <p className='smaller-text'>timezone</p>
-                            <p className='regular-text'>UTC {data.location.timezone}</p>
+                            {isDataSet && <p className='regular-text'> UTC {data.location.timezone}</p>}
                         </div>
                     </li>
                     <li className='col-sm-3'>
                         <div>
                             <p className='smaller-text'>isp</p>
-                            <p className='regular-text'>{data.isp}</p>
+                            {isDataSet && <p className='regular-text'>{data.isp}</p>}
                         </div>
                     </li>
                 </ul>
