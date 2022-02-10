@@ -14,7 +14,7 @@ const Map = () =>{
                     isp: ' '
     })
     const [isDataSet, setIsDataSet] = useState(false)
-    const [ip, setIp] = useState()
+    const [ip, setIp] = useState(null)
     const [inputValue, setInputValue] = useState('')
     const url = 'https://geo.ipify.org/api/v2/country?apiKey=at_CK8ozFbsMUemLUqSUDkPMnb4n3C5t&ipAddress=' + ip
     const isMounted = useRef(false)
@@ -29,14 +29,16 @@ const Map = () =>{
         } )
         .then(data => {
             console.log('get user ip: gotten')
+            if (ip === null){
             setIp(data.IPv4)
+        }
         })
         .catch(error => {
             console.log('get user Ip: error')
-            setIp('')
+            setIp(null)
         })
     }
-    
+    console.log(ip===null, isDataSet)
    const getUserInput = () => {
     console.log('get user input function', url, 'inputValue', inputValue, 'ip', ip)
     fetch (url)
@@ -49,8 +51,7 @@ const Map = () =>{
     .then(data => {
         console.log('get user input: gotten')
         setData(data)
-        isDataSet(true)
-        console.log(data)
+        setIsDataSet(true)
         setInputValue('')
     })
     .catch(error => {
@@ -73,9 +74,8 @@ const Map = () =>{
                 getUserInput()
                 console.log('ip set', 'ip', ip)
             }
-            //return isMounted = false
         }, []
-   )
+   ) 
 
     useEffect(
         ()=>{
