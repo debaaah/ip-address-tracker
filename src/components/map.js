@@ -1,23 +1,21 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet'
 import React, {useState, useEffect, useRef} from 'react'
-import Geocode from 'react-geocode'
 import { Icon } from "leaflet";
 import './map.css'
 
 const Map = () =>{
     const [data, setData] = useState({
-        ip: '...',
+        ip: '  ',
                     location: {
-                        region: '...',
-                        country: '...',
-                        timezone: '...'
+                        region: ' ',
+                        country: ' ',
+                        timezone: ' '
                     }, 
-                    isp: '...'
+                    isp: ' '
     })
-    const [ip, setIp] = useState('146.112.128.150')
+    const ipSet = useRef(false)
+    const [ip, setIp] = useState()
     const [inputValue, setInputValue] = useState('')
-    const [newPosition, setNewPosition] = useState()
-    const [latAndLong, setLatAndLong] = useState({lat: '48.8584', long: '2.2945'})
     const url = 'https://geo.ipify.org/api/v2/country?apiKey=at_CK8ozFbsMUemLUqSUDkPMnb4n3C5t&ipAddress=' + ip
     const isMounted = useRef(false)
    
@@ -30,18 +28,17 @@ const Map = () =>{
             throw response 
         } )
         .then(data => {
-            console.log(data)
+            console.log('get user ip: gotten')
             setIp(data.IPv4)
-            getUserInput()
         })
         .catch(error => {
-            console.log('user Ip error', error)
+            console.log('get user Ip: error')
             setIp('')
         })
     }
     
    const getUserInput = () => {
-    console.log('here function', url)
+    console.log('get user input function', url, 'inputValue', inputValue, 'ip', ip)
     fetch (url)
     .then(response => {
         if (response.ok){
@@ -50,57 +47,42 @@ const Map = () =>{
         throw response 
     } )
     .then(data => {
-        console.log(data)
+        console.log('get user input: gotten')
         setData(data)
         setInputValue('')
-        //setNewPosition(data.location.region + ', ' + data.location.country)
-        getGeocode(data.location.region, data.location.country)
     })
     .catch(error => {
-        console.log(error)
+        console.log('get user input: error')
     })
    }
-
-   console.log(latAndLong.lat, latAndLong.long)
-   
+    
    const submitted = (e) => {
             e.preventDefault()
-            console.log('submitted')
             setIp(inputValue)
-            getUserInput()
-            getGeocode()
+            console.log('submitted',url, 'inputValue', inputValue, 'ip', ip)
 }
-
-    const getGeocode = (region, country) =>{
-
-        const newLocation = region + ', ' + country
-        Geocode.setLanguage('en')
-        Geocode.fromAddress(newLocation ).then(
-        (response) => {
-            console.log(response.results[0].geometry.location)
-            const {latitude, longitude} = response.results[0].geometry.location
-            setLatAndLong({['lat']: latitude, ['long']: longitude})
-            console.log(latAndLong.lat, latAndLong.long)
-        },
-        (error) => {
-            console.log('geocode error', error)
-        })
-    }
     
    useEffect(
         () => {
             isMounted.current = true
             if(isMounted) {
-                console.log(isMounted)
+                console.log('is mounted', isMounted)
                 getUserIp()
                 getUserInput()
+                console.log('ip set', 'ip', ip)
             }
             //return isMounted = false
         }, []
    )
 
-   const setInput = (e) =>{
+    useEffect(
+        ()=>{
+            getUserInput()
+            console.log('2nd useEffect, on ip change',url, 'inputValue', inputValue, 'ip', ip)
+        }, [ip]
+    )
 
+   const setInput = (e) =>{
     setInputValue(e.target.value)
    }
 
@@ -146,9 +128,6 @@ const Map = () =>{
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 />
-                <Marker position={[48.8584, 2.2945]}>
-                    <Popup>location</Popup>
-                </Marker>
             </MapContainer>
             </div>
         </div>
