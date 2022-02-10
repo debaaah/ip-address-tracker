@@ -100,6 +100,7 @@ const Map = () =>{
    )
 
    const setInput = (e) =>{
+
     setInputValue(e.target.value)
    }
 
@@ -108,7 +109,7 @@ const Map = () =>{
             <div className='first-box'>
                 <p className='title'>IP Address Tracker</p>
                 <form onSubmit={submitted}>
-                    <input type='text' className='text' value={inputValue} onChange={() => setInput}/>
+                    <input type='text' className='text' value={inputValue} onChange={setInput}/>
                     <input type='submit' value='>' className='submit'/>
                 </form>
                 
