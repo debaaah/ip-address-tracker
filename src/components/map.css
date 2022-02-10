@@ -11,6 +11,9 @@
 .title{
     color:white;
     padding-top: 30px;
+    font-weight: bold;
+    font-family: ui-rounded;
+    font-size: 22px;
 }
 .text{
     width: 300px;
@@ -22,8 +25,9 @@ form{
     margin: 20px;
 }
 .first-box input{
-    padding: 12px;
+    padding: 9px;
     outline: none;
+    border: 0;
 }
 .submit{
     background-color: black;
