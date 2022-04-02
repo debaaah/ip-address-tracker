@@ -12,7 +12,10 @@
     "react-geocode": "^0.2.3",
     "react-leaflet": "^3.2.5",
     "react-scripts": "5.0.0",
+<<<<<<< HEAD
     "tsconfig-paths": "^3.14.1",
+=======
+>>>>>>> 5683f1057b0d112b2e2be3e3ae192d1734303df9
     "web-vitals": "^2.1.4"
   },
   "scripts": {
