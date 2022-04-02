@@ -5,6 +5,25 @@ import './map.css'
 
 const Map = () =>{
     const [isDataSet, setIsDataSet] = useState(false)
+    /*const checkHeight = (string, dataSet) => {
+        console.log('here', dataSet, newHeight.height !== null)
+        if(dataSet || newHeight.height !== null){
+                let value = string
+                if(value !== null){
+                    setNewHeight({height: value})
+                    console.log(value)
+                   }
+                let heights = []
+                let list = [...document.querySelectorAll('.regular-text')];
+                console.log('list', list)
+                list.map(item => {
+                    console.log(item.offsetHeight)
+                    return heights = [...heights, item.offsetHeight]
+                })
+                value = Math.max(...heights)
+                setNewHeight({height: value + 'px'})
+        }
+       }*/
     const [data, setData] = useState({
         ip: '  ',
                     location: {
@@ -18,7 +37,7 @@ const Map = () =>{
     const [inputValue, setInputValue] = useState('')
     const url = 'https://geo.ipify.org/api/v2/country?apiKey=at_CK8ozFbsMUemLUqSUDkPMnb4n3C5t&ipAddress=' + ip
     const isMounted = useRef(false)
-    
+    //const [newHeight, setNewHeight] = useState({height: null})
     let position = [9.081999, 8.675277]
     const getUserIp = () => {
         fetch('https://geolocation-db.com/json/')
@@ -73,8 +92,17 @@ const Map = () =>{
    useEffect(
         () => {
                 getUserIp()
+                //checkHeight(null, isDataSet)
+                window.addEventListener('resize', () => {
+                    setTimeout(
+                        () => {
+                            console.log(newHeight, isDataSet)
+                        }, 150
+                    )
+                })
+            
         }, []
-   )
+   ) 
                            // checkHeight('auto', isDataSet)
 
     useEffect(
