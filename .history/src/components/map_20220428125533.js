@@ -8,8 +8,7 @@ import {
 import React, { useState, useEffect, useRef } from "react";
 import { Icon } from "leaflet";
 import "./map.css";
-import arrow from './images/icon-arrow.svg'
-//import location from './images/icon-location.svg'
+
 const Map = () => {
   const [isDataSet, setIsDataSet] = useState(false);
   const [data, setData] = useState({
@@ -96,7 +95,7 @@ const Map = () => {
             onChange={setInput}
             placeholder="Search user IP or domain"
           />
-          <button type="submit" className="submit" onClick={(e) => e.preventDefault()} ><img src={arrow} /></button>
+          <input type="submit" value=">" className="submit" />
         </form>
 
         <ul className="row container-fluid">

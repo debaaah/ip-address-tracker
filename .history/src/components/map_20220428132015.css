@@ -31,9 +31,6 @@
 }
 form {
   margin: 20px;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
   overflow: hidden;
 }
 .first-box input,
@@ -124,7 +121,7 @@ li:last-child .left-border {
 }
 .leaflet-marker-pane img {
   content: url("./images/icon-location.svg");
-  width: unset !important;
+  height: unset !important;
 }
 @media screen and (max-width: 768px) {
   .text {
@@ -132,7 +129,7 @@ li:last-child .left-border {
   }
   .text {
     min-width: 180px;
-    max-width: 300px;
+    max-width: 380px;
   }
   .submit {
     width: 40px;
@@ -175,7 +172,7 @@ li:last-child .left-border {
   }
 }
 /*@media screen and (max-width: 576px)*/
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 414px) {
   .text {
     max-width: 200px;
   }

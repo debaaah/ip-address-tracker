@@ -31,13 +31,9 @@
 }
 form {
   margin: 20px;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
   overflow: hidden;
 }
-.first-box input,
-button {
+.first-box input {
   padding: 9px;
   outline: none;
   border: 0;
@@ -71,8 +67,8 @@ ul {
 li {
   /*
     position: relative;*/
-  width: 25%;
-  height: 100%;
+    width: 25%;
+    height: 100%;
   background-color: white;
   margin: 20px 0;
   padding: 20px 0 20px 0 !important;
@@ -80,7 +76,7 @@ li {
 li .left-border {
   border-right: 1px solid black;
   height: 100%;
-  padding: 0 5px 0 20px;
+  padding: 0 20px 0 10px;
 }
 li p {
   text-align: start;
@@ -106,13 +102,12 @@ li:last-child .left-border {
 .smaller-text {
   text-transform: uppercase;
   font-size: 18px;
-  color: hsl(0, 0%, 59%);
+  color: #b3b3b3;
   font-weight: 700;
 }
 .regular-text {
   font-weight: 500;
   font-size: 21px;
-  color: hsl(0, 0%, 17%);
 }
 .leaflet-container {
   width: 100%;
@@ -122,17 +117,13 @@ li:last-child .left-border {
 .leaflet-control-container {
   display: none !important;
 }
-.leaflet-marker-pane img {
-  content: url("./images/icon-location.svg");
-  width: unset !important;
-}
 @media screen and (max-width: 768px) {
   .text {
     font-size: 15px;
   }
   .text {
     min-width: 180px;
-    max-width: 300px;
+    max-width: 380px;
   }
   .submit {
     width: 40px;
@@ -175,11 +166,10 @@ li:last-child .left-border {
   }
 }
 /*@media screen and (max-width: 576px)*/
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 414px) {
   .text {
     max-width: 200px;
   }
   ul.row {
-    padding: 20px 20px 0;
-  }
+    padding: 20px 20px 0;}
 }

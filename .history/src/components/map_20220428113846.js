@@ -8,8 +8,7 @@ import {
 import React, { useState, useEffect, useRef } from "react";
 import { Icon } from "leaflet";
 import "./map.css";
-import arrow from './images/icon-arrow.svg'
-//import location from './images/icon-location.svg'
+
 const Map = () => {
   const [isDataSet, setIsDataSet] = useState(false);
   const [data, setData] = useState({
@@ -96,40 +95,36 @@ const Map = () => {
             onChange={setInput}
             placeholder="Search user IP or domain"
           />
-          <button type="submit" className="submit" onClick={(e) => e.preventDefault()} ><img src={arrow} /></button>
+          <input type="submit" value=">" className="submit" />
         </form>
 
         <ul className="row container-fluid">
-          <li className=" ">
+          <li className="col-sm-3">
             <div className="left-border">
               <p className="smaller-text">ip address</p>
               {isDataSet && <p className="regular-text">{data.ip}</p>}
             </div>
           </li>
-          <li className=" ">
-            <div className="left-border">
-              <p className="smaller-text">location</p>
-              {isDataSet && (
-                <p className="regular-text">
-                  {data.location.region}, {data.location.country}
-                </p>
-              )}
+          <li className="col-sm-3">
+          <div className="left-border">
+            <p className="smaller-text">location</p>
+            {isDataSet && (
+              <p className="regular-text">
+                {data.location.region}, {data.location.country}
+              </p>
+            )}
             </div>
           </li>
 
-          <li className=" ">
-            <div className="left-border">
-              <p className="smaller-text">timezone</p>
-              {isDataSet && (
-                <p className="regular-text"> UTC {data.location.timezone}</p>
-              )}
-            </div>
+          <li className="col-sm-3">
+            <p className="smaller-text">timezone</p>
+            {isDataSet && (
+              <p className="regular-text"> UTC {data.location.timezone}</p>
+            )}
           </li>
-          <li className=" ">
-            <div className="left-border">
-              <p className="smaller-text">isp</p>
-              {isDataSet && <p className="regular-text">{data.isp}</p>}
-            </div>
+          <li className="col-sm-3">
+            <p className="smaller-text">isp</p>
+            {isDataSet && <p className="regular-text">{data.isp}</p>}
           </li>
         </ul>
       </div>
@@ -144,9 +139,9 @@ const Map = () => {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           <Marker position={position}>
-            {/*<Popup>
+            <Popup>
               A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>*/}
+            </Popup>
           </Marker>
         </MapContainer>
       </div>
