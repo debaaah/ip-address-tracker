@@ -50,10 +50,9 @@ button {
   color: white;
   width: 50px;
   font-weight: 700;
-  border-top-right-radius: 10px !important;
-  border-bottom-right-radius: 10px !important;
 }
 ul {
+  /*width: 100%;*/
   display: flex;
   flex-wrap: nowrap;
   list-style-type: none;
@@ -61,6 +60,7 @@ ul {
   align-items: stretch;
   padding: 0;
   position: absolute;
+  bottom: -70px;
 }
 .height {
   height: 150px;
@@ -72,29 +72,27 @@ ul {
   flex-wrap: nowrap;
 }
 li {
-  border: 0;
-  position: relative;
+  /*
+    position: relative;*/
   width: 25%;
+  height: 100%;
   background-color: white;
   margin: 20px 0;
-  padding: 20px 10px !important;
+  padding: 20px 0 20px 0 !important;
 }
-li::before {
-  content: "";
-  position: absolute;
-  height: 70%;
-  width: 1px;
-  background-color: rgba(150, 150, 150, 0.678);
-  top: 50%;
-  left: -10px;
-  transform: translateY(-50%);
+li .left-border {
+  border-right: 1px solid hsla(0, 0%, 59%, 0.678);
+  height: 100%;
+  padding: 0 10px 0 20px;
 }
 li p {
   text-align: start;
   word-break: break-word;
   margin-bottom: 0;
 }
-
+li:last-child div {
+  border-right: 0;
+}
 [type="text"],
 li:first-child {
   border-top-left-radius: 10px !important;
@@ -104,6 +102,9 @@ li:first-child {
 li:last-child {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+li:last-child .left-border {
+  border-right: 0;
 }
 .smaller-text {
   text-transform: uppercase;
@@ -163,6 +164,10 @@ li:last-child {
   }
   li p {
     text-align: center;
+    border-right: 0;
+  }
+  li .left-border {
+    border-right: 0;
   }
   li:first-child {
     border-top-left-radius: 10px;
@@ -177,13 +182,6 @@ li:last-child {
   }
 }
 /*@media screen and (max-width: 576px)*/
-@media (min-width: 576px) {
-  .col-sm-3 {
-    /*/ -ms-flex: 0 0 25%;
-    flex: 0 0 25%;*/
-    max-width: unset;
-  }
-}
 @media screen and (max-width: 480px) {
   .text {
     max-width: 200px;
